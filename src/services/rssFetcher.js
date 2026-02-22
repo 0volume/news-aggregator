@@ -34,7 +34,16 @@ export async function fetchRSS(sourceId) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
     
-    const xmlText = await response.text();
+    const data = await response.text();
+    // Check if response is JSON (allorigins /get endpoint) or raw XML
+    let xmlText;
+    try {
+      const json = JSON.parse(data);
+      xmlText = json.contents; // allorigins returns { contents: "...", status: {...} }
+    } catch {
+      xmlText = data; // Already XML
+    }
+    
     const articles = parseRSS(xmlText, sourceId);
     
     return articles;

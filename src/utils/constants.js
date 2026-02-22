@@ -22,8 +22,8 @@ export const RSS_FEEDS = {
   fox: 'https://moxie.foxnews.com/google-publisher/latest.xml'
 };
 
-// CORS Proxy URL - use get endpoint which returns JSON
-export const CORS_PROXY = 'https://api.allorigins.win/get?url=';
+// CORS/JSON Proxy URL - use rss2json which returns JSON
+export const CORS_PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 // Cache configuration
 export const CACHE_KEY = 'news_aggregator_cache';
